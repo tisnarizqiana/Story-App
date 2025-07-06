@@ -1,2 +1,2 @@
-APP_URL=https://rismarahma13.github.io/berbagiCerita/
+APP_URL=https://tisnarizqiana.github.io/Story-App/
 MAP_SERVICE_API_KEY=fdoJMHk3nwWX0g1k89wu
