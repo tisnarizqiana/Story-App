@@ -1,0 +1,2 @@
+APP_URL=https://rismarahma13.github.io/berbagiCerita/
+MAP_SERVICE_API_KEY=fdoJMHk3nwWX0g1k89wu
