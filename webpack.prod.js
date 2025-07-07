@@ -29,46 +29,11 @@ module.exports = merge(common, {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
-    new WorkboxWebpackPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
-      runtimeCaching: [
-        {
-          urlPattern: ({ url }) =>
-            url.href.startsWith("https://story-api.dicoding.dev/v1/stories"),
-          handler: "NetworkFirst",
-          options: {
-            cacheName: "story-api-cache",
-            networkTimeoutSeconds: 3,
-            cacheableResponse: {
-              statuses: [0, 200],
-            },
-          },
-        },
-        {
-          urlPattern: ({ url }) =>
-            url.href.startsWith("https://tile.openstreetmap.org/"),
-          handler: "StaleWhileRevalidate",
-          options: {
-            cacheName: "openstreetmap-tiles",
-            cacheableResponse: {
-              statuses: [0, 200],
-            },
-          },
-        },
-        {
-          urlPattern: ({ url }) =>
-            url.href.startsWith("https://api.maptiler.com/"),
-          handler: "StaleWhileRevalidate",
-          options: {
-            cacheName: "maptiler-api-cache",
-            cacheableResponse: {
-              statuses: [0, 200],
-            },
-          },
-        },
-      ],
-      importScripts: ["./sw.js"],
+    // --- PERUBAHAN DI SINI ---
+    // Menggunakan InjectManifest untuk mengintegrasikan service worker kustom
+    new WorkboxWebpackPlugin.InjectManifest({
+      swSrc: "./src/scripts/sw.js",
+      swDest: "service-worker.js", // Nama file service worker di direktori 'dist'
     }),
   ],
 });
